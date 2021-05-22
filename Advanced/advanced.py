@@ -936,11 +936,11 @@ print(end="\n\n")
 
 # GETTING PASSWORD FROM USER :
 # _____________________________
-"""
-   username = input('Username: ')
-   password = getpass('Password: ')  # run on command line
-   print('Logging In...')
-"""
+
+username = input('Username: ')
+password = getpass('Password: ')  # run on command line
+print('Logging In...')
+
 
 # TYPING SYSTEM :
 # ________________
@@ -995,25 +995,24 @@ class Person:
 
 def quack_and_swim(obj):
     # not duck-typed (Non-Pythonic)
-    """
-        if isinstance(obj, Duck):
-          obj.quack()
-          obj.swim()
-        else:
+    
+    if isinstance(obj, Duck):
+      obj.quack()
+      obj.swim()
+    else:
         print("Passed object is not of type Duck!")
-    """
+    
 
     # Duck Typed :
     # ____________
     # We do not care about what type of object is passed to the function
     # But it is error prone. To avoid we use the concept of EAFP
 
-    """
-       obj.quack()
-       obj.swim()
-
-       print(end="\n")
-    """
+    
+    obj.quack()
+    obj.swim()
+    print(end="\n")
+    
 
     # NON PYTHONIC :
     # ______________
@@ -1021,15 +1020,15 @@ def quack_and_swim(obj):
     # ______________________________
     # We first check the presence of attributes we are looking for
     # then we execute them (if present)
-    """
-        if hasattr(obj, 'quack'):
-           if callable(obj.quack):
-              obj.quack()
+    
+    if hasattr(obj, 'quack'):
+       if callable(obj.quack):
+          obj.quack()
 
-        if hasattr(obj, 'swim'):
-           if callable(obj.swim):
-              obj.swim()
-    """
+    if hasattr(obj, 'swim'):
+       if callable(obj.swim):
+          obj.swim()
+    
 
     # PYTHONIC WAY :
     # ______________
@@ -1065,10 +1064,10 @@ student_dict = {'name': 'Santosh', 'roll': 732, 'gender': 'male'}
 
 # Non-Pythonic Way (LBYL):
 # __________________
-"""
-  if 'name' in student_dict and 'roll' in student_dict and 'gender' in student_dict:
+
+if 'name' in student_dict and 'roll' in student_dict and 'gender' in student_dict:
     print("I am a {gender} student having name {name} and roll {roll}".format(**student_dict))
-"""
+
 
 # Pythonic Way (EAFP):
 # __________________
@@ -1084,10 +1083,10 @@ print(end='\n\n')
 my_list = [1, 2, 3, 4, 5, 6]
 
 # non-pythonic :
-"""
-    if len(my_list >= 6):
-        print(my_list[5])
-"""
+
+if len(my_list >= 6):
+    print(my_list[5])
+
 
 # pythonic :
 try:
@@ -1110,13 +1109,13 @@ except IndexError as e:
 my_file = "/test_folder/test1.txt"
 
 # RACE CONDITION (non - pythonic ):
-"""
+
 if os.access(my_file, os.R_OK):  # if file is ok
     with open(my_file) as f:
         print(f.read())
 else:
     print("File cannot be accessed!")
-"""
+
 
 # NO RACE CONDITION (pythonic ):
 try:
@@ -1639,7 +1638,7 @@ html_output += f'\n</ul>'
 
 print(html_output, end='\n\n')
 
-"""
+
 # REQUESTS MODULE :
 # ____________________
 r = requests.get('https://xkcd.com/353/')
@@ -1817,7 +1816,7 @@ for article in soup.find_all('article', class_='post'):
 
 # close the file
 corey_ms.close()
-"""
+
 
 # ZIP_FILE :
 # ___________
@@ -1825,7 +1824,7 @@ corey_ms.close()
 # general method
 # _________________
 # create a zip_file names zip_file.zip
-"""
+
 cwd = os.getcwd()
 
 my_zip = zipfile.ZipFile(f'{cwd}' + r'\test_zip_file.zip', 'w')
@@ -1835,26 +1834,26 @@ my_zip.write(f'{cwd}' + r'\Screenshot.png')
 my_zip.write(f'{cwd}' + r'\test1.txt')
 
 my_zip.close()
-"""
 
-"""
+
+
 # Using Context manager
 with zipfile.ZipFile('new_zip_file.zip', 'w') as my_zip:
     my_zip.write('Screenshot.png')
     my_zip.write('test1.txt')
-"""
+
 
 # With compression parameter to get compressed zip file :
 # ________________________________________________________
-"""
+
 with zipfile.ZipFile('new_zip_file.zip', 'w', compression=zipfile.ZIP_DEFLATED) as my_zip:
     my_zip.write('comic.png')
     my_zip.write('new_file.csv')
-"""
+
 
 # To extract files from zip file :
 # _______________________________
-"""
+
 with zipfile.ZipFile('new_zip_file.zip', 'r') as my_zip:
     print(my_zip.namelist())  # To get the all file names
 
@@ -1863,20 +1862,20 @@ with zipfile.ZipFile('new_zip_file.zip', 'r') as my_zip:
 
     # To extract comic.png file from the new_zip_file.zip
     my_zip.extract('comic.png')
-"""
+
 
 # shutil module to make zip file from a directory :
 # __________________________________________________
-"""
+
 shutil.make_archive('another_zip_file', 'zip', 'test_folder')
-"""
+
 
 # To unzip the files using shutil :
 # _________________________________
 # unpack another_zip_file.zip to a folder named 'another_extracted_file'
-"""
+
 shutil.unpack_archive('another_zip_file.zip', 'another_extracted_file')
-"""
+
 
 # We can use other archive format in 'format' parameter of make_archive()
 #   OR  unpack_archive()
@@ -1884,30 +1883,30 @@ shutil.unpack_archive('another_zip_file.zip', 'another_extracted_file')
 # EXAMPLE :
 # ___________
 # packing
-"""
+
 shutil.make_archive('new_gztar_file', 'gztar', 'test_folder')
-"""
+
 
 # unpacking
-"""
+
 shutil.unpack_archive('new_gztar_file.tar.gz', 'extracted_gztar_file')
-"""
+
 
 # DOWNLOADING ZIP FILE FROM INTERNET :
 # _________________________________________
 
 r = requests.get('https://github.com/donnemartin/system-design-primer/archive/master.zip')
 
-"""
+
 with open('systemDesign.zip', 'wb') as my_zip:
     # write the bytes of r in my_zip
     my_zip.write(r.content)
-"""
 
-"""
+
+
 with zipfile.ZipFile('systemDesign.zip', 'r') as f:
     f.extractall('System Design')
-"""
+
 
 # INTERNAL COMMANDS V/S EXTERNAL COMMANDS :
 # __________________________________________
@@ -2014,10 +2013,10 @@ print(p1.stderr, end='\n\n')
 
 # We can pass check = True in run() to tell Python to throw an
 # exception when exception occurred
-"""
+
 p1 = subprocess.run(['dir', 'dne'], shell=True, capture_output=True, text=True, check=True)
 print('\n\n')
-"""
+
 
 # Ignoring error by redirecting them to DEVNULL :
 # ________________________________________________
@@ -2316,12 +2315,12 @@ print(p1.stderr)  # None
  -> On a more technical level, an execution context
     (therefore a thread) consists of the values of the CPU's
     registers
-
 """
+
 
 # CPU BOUND V/S I/O BOUND :
 # ___________________________
-"""   
+"""
  -> A program is CPU bound if it would go faster if the CPU were 
     faster, i.e. it spends the majority of its time simply using
     the CPU (doing calculations). A program that computes new 
@@ -2345,7 +2344,7 @@ print(p1.stderr)  # None
   Asynchronously means running concurrently
 """
 
-"""
+
 # time.perf_counter() gives us the relative time
 # It does not have any relation with the real world time
 start = time.perf_counter()
@@ -2426,14 +2425,14 @@ with concurrent.futures.ThreadPoolExecutor() as executor:
 
 end = time.perf_counter()
 print(f'Finished in {end-start} second(s)', end='\n\n')
-"""
+
 
 # REAL WORLD EXAMPLE :
 # _____________________________________________________________________
 # DOWNLOADING A SET OF IMAGES FROM a set of image urls
 # from website : 'unsplash.com'
 
-"""
+
 start = time.perf_counter()
 
 img_urls = [
@@ -2471,13 +2470,13 @@ with concurrent.futures.ThreadPoolExecutor() as executor:
 end = time.perf_counter()
 print(f'Finished in {end-start} second(s)', end='\n\n')
 
-"""
+
 
 
 # MULTI-PROCESSING :
 # ____________________________________________________________________
 # For Parallel computation of several tasks
-"""
+
 def do_something(seconds):
     print('Sleeping {} seconds'.format(seconds))
     time.sleep(seconds)
@@ -2500,9 +2499,9 @@ for process in processes:
 
 end = time.perf_counter()
 print(f'Finished in {end-start} second(s)', end='\n\n')
-"""
 
-"""
+
+
 # METHOD - 2: (Using concurrent.futures.ProcessPoolExecutor())
 # _____________________________________________________________________
 
@@ -2526,7 +2525,7 @@ with concurrent.futures.ProcessPoolExecutor() as executor:
 
 end = time.perf_counter()
 print(f'Finished in {end-start} second(s)', end='\n\n')
-"""
+
 
 
 # REAL WORLD EXAMPLE OF USING MULTI-PROCESSING :
@@ -2534,7 +2533,7 @@ print(f'Finished in {end-start} second(s)', end='\n\n')
 # Using 'multiprocessing' module to process multiple images
 # parallel
 
-"""
+
 start = time.perf_counter()
 
 img_names = [
@@ -2581,7 +2580,7 @@ with concurrent.futures.ProcessPoolExecutor() as executor:
 
 end = time.perf_counter()
 print(f'Finished in {end-start} second(s)')
-"""
+
 
 # Anaconda :
 # ____________________________________________________________________
